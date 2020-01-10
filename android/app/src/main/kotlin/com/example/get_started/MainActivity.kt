@@ -1,4 +1,4 @@
-package com.example.get_started
+package com.example.finansterr
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

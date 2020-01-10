@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/home.dart';
+import 'package:finansterr/pages/home.dart';
 
 void main() => runApp(new App());
 

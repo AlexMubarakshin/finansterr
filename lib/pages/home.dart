@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:get_started/models/index.dart';
-
-import 'package:http/http.dart' as http;
+import 'package:finansterr/controller/IndexController.dart';
+import 'package:finansterr/model/index.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,20 +23,16 @@ class _HomePageState extends State<HomePage> {
       isLoading = true;
     });
 
-    final response = await http
-        .get("https://financialmodelingprep.com/api/v3/majors-indexes");
-
-    if (response.statusCode == 200) {
-      List majorIndexesList = json.decode(response.body)['majorIndexesList'];
-
-      list = majorIndexesList.map((data) => new Index.fromJson(data)).toList();
-
-      setState(() {
-        isLoading = false;
-      });
-    } else {
-      throw Exception('Failed to load photos');
+    try {
+      IndexController controller = IndexController();
+      list = await controller.fetchMajorIndexes();
+    } catch (e) {
+      print(e);
     }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
